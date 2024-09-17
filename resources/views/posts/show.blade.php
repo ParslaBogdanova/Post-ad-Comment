@@ -10,7 +10,7 @@
     </ul>
 
     <h1>Create comment</h1>
-    <form action="{{ route('posts.addcomment', $post) }}" method="post">
+    <form action="{{ route('posts.addComment', $post) }}" method="post">
         @csrf
         
         <label for="content">Content</label>

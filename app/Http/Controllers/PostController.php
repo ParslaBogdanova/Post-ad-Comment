@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -38,7 +40,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(Post $post, Comment $comments)
     {
         return view('posts.show', ['post' => $post]);
     }
@@ -71,8 +73,10 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('posts.index');
     }
+
     
     public function addComment(Request $request, Post $post) {
+        $post->comments()->create($request->all());
         return redirect()->route('posts.show', $post);
     }
 }

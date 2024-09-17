@@ -1,4 +1,5 @@
 <x-app-layout>
+    <a href="{{ route('posts.create') }}">Create new Post</a>
     <h1>All posts</h1>
     <ul>
         @foreach($posts as $post)
@@ -8,7 +9,12 @@
                 <div>
                     <a href="{{ route('posts.show', $post) }}">Show</a>
                     <a href="{{ route('posts.edit', $post) }}">Edit</a>
-                    <a href="{{ route('posts.destroy', $post) }}">Delete</a>
+                    <form action="{{ route('posts.destroy', $post) }}" method="Post">
+                    @csrf 
+                    @method('delete')
+
+                    <button type="submit">Delete</button>
+                    </form>
                 </div>
             </li>
         @endforeach
